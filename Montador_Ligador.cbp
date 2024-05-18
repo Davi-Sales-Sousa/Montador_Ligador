@@ -34,7 +34,10 @@
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="u.h" />
+		<Unit filename="stringFunctions.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="stringFunctions.h" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
 		</Extensions>

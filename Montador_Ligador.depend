@@ -1,0 +1,13 @@
+# depslib dependency file v1.0
+1715993762 source:c:\users\games\onedrive\documentos\montador-ligador\montador_ligador\montador_ligador\stringfunctions.c
+	"stringFunctions.h"
+
+1715993723 c:\users\games\onedrive\documentos\montador-ligador\montador_ligador\montador_ligador\stringfunctions.h
+	<string.h>
+
+1715993748 source:c:\users\games\onedrive\documentos\montador-ligador\montador_ligador\montador_ligador\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"stringFunctions.h"
+
