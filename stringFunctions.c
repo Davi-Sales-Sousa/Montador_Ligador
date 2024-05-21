@@ -6,7 +6,7 @@ void removeComment(char *origLine)
     const int TAM = strlen(origLine);
     int i;
 
-    for(i = 0; i < TAM-1; i++)
+    for(i = 0; i < TAM; i++)
     {
         if(origLine[i] == ';')
         {
@@ -38,4 +38,13 @@ int removeUselessCharacter(char *origLine)
     }
     return 0; // if the function return 0 this meaning that the line is useful
 
+}
+
+void stringUppercase(char *origLine)
+{
+    const int origLineTAM = strlen(origLine);
+    int i;
+
+    for(i = 0; i < origLineTAM; i++)
+        origLine[i] = toupper(origLine[i]);
 }

@@ -1,6 +1,8 @@
 	AA:     
 
 EQU 1
+L1: EQU 2
+L3: EQU 4
 ;comentario
 INPUT OLD_DATA
 LOAD OLD_DATA

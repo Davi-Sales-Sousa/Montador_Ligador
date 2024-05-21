@@ -1,13 +1,24 @@
 # depslib dependency file v1.0
-1715993762 source:c:\users\games\onedrive\documentos\montador-ligador\montador_ligador\montador_ligador\stringfunctions.c
+1716239138 source:c:\users\games\onedrive\documentos\montador-ligador\montador_ligador\montador_ligador\stringfunctions.c
 	"stringFunctions.h"
 
-1715993723 c:\users\games\onedrive\documentos\montador-ligador\montador_ligador\montador_ligador\stringfunctions.h
+1716276834 c:\users\games\onedrive\documentos\montador-ligador\montador_ligador\montador_ligador\stringfunctions.h
 	<string.h>
+	<ctype.h>
 
-1715993748 source:c:\users\games\onedrive\documentos\montador-ligador\montador_ligador\montador_ligador\main.c
+1716276777 source:c:\users\games\onedrive\documentos\montador-ligador\montador_ligador\montador_ligador\main.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	"stringFunctions.h"
+	"preProcess.h"
+
+1716241755 c:\users\games\onedrive\documentos\montador-ligador\montador_ligador\montador_ligador\preprocess.h
+	<stdio.h>
+	<stdlib.h>
+	"stringFunctions.h"
+	<string.h>
+
+1716276512 source:c:\users\games\onedrive\documentos\montador-ligador\montador_ligador\montador_ligador\preprocess.c
+	"preProcess.h"
 

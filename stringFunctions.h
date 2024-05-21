@@ -2,7 +2,9 @@
 #define STRINGFUNCTIONS_H
 
 #include <string.h>
+#include <ctype.h>
 
 void removeComment(char *orig);
-void removeUselessCharacter(char *origLine);
+int removeUselessCharacter(char *origLine);
+void stringUppercase(char *origLine);
 #endif // STRINGFUNCTIONS_H
