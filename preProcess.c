@@ -1,6 +1,7 @@
 #include "preProcess.h"
 #define DEBUGAR 1
 #define DEBUGAR2 0
+
 void getEQULabel(char *origLine)
 {
     const int origLineTAM = strlen(origLine);
@@ -22,6 +23,7 @@ void getEQULabel(char *origLine)
     #endif
 }
 
+//This function analize the origLine and get EQU Valor as string
 void getEQUValor(char *origLine)
 {
     const int origLineTAM = strlen(origLine);
@@ -44,23 +46,26 @@ void getEQUValor(char *origLine)
 
 }
 
-//This function search all EQU definition on the code begin
+//This function search all EQU definition on the code begin, return the how many lines was jumped
 int getEQUDefinition(char *asmFileName, EQU *equTable)
 {
-    int continueReaderLine; //This variable stores the line number that the program will read after processing the equs
     int equNumber = 0; // This is the number of equs that have in the code
+    int jumpedLines = 0;
     FILE *asmFile = fopen(asmFileName,"r");
     char line[200],line2[200];
     const int foundAllEQU = 0;
 
     equTable = (EQU*)malloc(sizeof(EQU));
 
-    while(!foundAllEQU)
+    while(!foundAllEQU) //while not found all equ at the begin of code continue the search
     {
         fgets(line,200,asmFile);
+        jumpedLines++;
         removeComment(line);
+        stringUppercase(line);
         strcpy(line2,line);
 
+        //This code block check stop to the loop, if no EQU and no label or comment or blank line, end loop
         if(strstr(line2,"EQU") == NULL)
         {
             if(strchr(line2,':') == NULL)
@@ -75,15 +80,18 @@ int getEQUDefinition(char *asmFileName, EQU *equTable)
             }
         }
 
+        //Save the equLabel on the equTable
         if(strstr(line2,":") != NULL)
         {
             getEQULabel(line2);
             #if DEBUGAR2
                 printf("%s\n",line2);
+                ashsihdishdihsaih
             #endif // DEBUGAR
             strcpy(equTable[equNumber].labelName,line2);
         }
 
+        //Save the equValor on the equTable
         if(strstr(line,"EQU") != NULL)
         {
             strcpy(line2,strstr(line,"EQU"));
@@ -93,8 +101,6 @@ int getEQUDefinition(char *asmFileName, EQU *equTable)
         }
 
         equTable = (EQU*)realloc(equTable,(equNumber+1)*sizeof(EQU));
-
-
     }
 
     #if DEBUGAR
@@ -103,7 +109,69 @@ int getEQUDefinition(char *asmFileName, EQU *equTable)
         printf("Label: %s Valor: %s\n",equTable[i].labelName,equTable[i].valor);
     #endif // DEBUGAR
 
-    continueReaderLine = equNumber;
+    return jumpedLines - 1;
+}
 
-    return continueReaderLine;
+//This function return 1 if the line is LabelLine, ex: 'L1:  ', else return 0 if not LabelLine
+int isLabelLine(char *origLine)
+{
+    char *pos;
+    int posDiv; //This variable meaning the pos of the character ':'
+    int i,blankLineBegin = 0;
+    const int origLineTAM = strlen(origLine);
+
+    pos = strchr(origLine,':');
+
+    posDiv = pos - origLine;
+
+    if((posDiv - 1) < 0 || (origLine[posDiv - 1] == ' ' || origLine[posDiv - 1] == '\t' || origLine[posDiv - 1] == '\n'))
+        return 0;//not LabeLine
+
+    for(i = posDiv; i >= 0 ; i--)
+    {
+        if(origLine[i] == ' ' || origLine[i] == '\t' || origLine[i] == '\n')
+        {
+            blankLineBegin = i;
+            break;
+        }
+    }
+
+    if(blankLineBegin != 0)
+    {
+        for(i = blankLineBegin; i >= 0; i--)
+        {
+            if(!(origLine[i] == ' ' || origLine[i] == '\t' || origLine[i] == '\n'))
+            {
+                return 0;//not LabeLine
+            }
+        }
+    }
+
+    for(i = posDiv + 1; i < origLineTAM; i++)
+    {
+        if(!(origLine[i] == ' ' || origLine[i] == '\t' || origLine[i] == '\n'))
+        {
+            return 0;//not LabeLine
+        }
+    }
+
+    return 1;//is LabeLine
+}
+
+// This function check if is IF directive. if return 1 have IF directive in the line, if 0 don't have IF directive in the line
+int isIFDirective(char *origLine)
+{
+    if(strstr(origLine,"IF") != NULL)
+    {
+        return 1;//have IF directive in the line
+    }
+    return 0;// don't have IF directive in the line
+}
+
+// This function execute the if directive
+void ifDirective(FILE *asmFile,int *lines)
+{
+    char valor[20];
+    int
+
 }

@@ -16,4 +16,7 @@ typedef struct
 void getEQULabel(char *origLine);
 void getEQUValor(char *origLine);
 int getEQUDefinition(char *asmFileName, EQU *equTable);
+int isLabelLine(char *origLine);
+int isIFDirective(char *origLine);
+void ifDirective(FILE *asmFile,int *lines);
 #endif // PREPROCESS_H

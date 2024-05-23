@@ -7,9 +7,8 @@
 int main()
 {
     FILE *arq;
-    char linha[200] = "oi: add n2",linha2[200];
-    EQU *equTable;
+    char linha[200] = "                             B:\t",linha2[200];
 
-    getEQUDefinition(".//program")
+    printf("%d\n",isLabelLine(linha));
     return 0;
 }

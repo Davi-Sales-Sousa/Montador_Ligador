@@ -1,9 +1,7 @@
-	AA:     
-
-EQU 1
-L1: EQU 2
-L3: EQU 4
-;comentario
+AA:EqU1
+L1:equ2
+L2:equ4
+L5:
 INPUT OLD_DATA
 LOAD OLD_DATA
 L1: DIV DOIS

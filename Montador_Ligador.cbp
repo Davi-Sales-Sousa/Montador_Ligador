@@ -38,6 +38,9 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="preProcess.h" />
+		<Unit filename="preProcessMain.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="stringFunctions.c">
 			<Option compilerVar="CC" />
 		</Unit>
