@@ -158,6 +158,38 @@ int isLabelLine(char *origLine)
     return 1;//is LabeLine
 }
 
+//This function skip or back n lines from a file
+void skipLines(FILE *arq, int qtdSkipLines,int *currentLine, int choose)
+{
+    int i;
+
+    if(choose == 1)// if choose = 1 it meaning that the function will jump to forward lines
+    {
+        for(i = 0; i < qtdSkipLines; i++)
+        {
+            for(;getc(arq) != '\n';){}
+            (*currentLine)++;
+        }
+        return;
+
+    }
+    else if(choose == 2)// if choose = 2 it meaning that the function will jump to previous lines
+    {
+        int previousLine = *currentLine - qtdSkipLines - 1;
+        previousLine = previousLine < 0 ? -previousLine : previousLine;
+
+        rewind(arq);
+        for(i = 0; i < previousLine; i++)
+        {
+            for(;getc(arq) != '\n';){}
+        }
+
+        (*currentLine) = (*currentLine) - qtdSkipLines;
+    }
+
+}
+
+
 // This function check if is IF directive. if return 1 have IF directive in the line, if 0 don't have IF directive in the line
 int isIFDirective(char *origLine)
 {
@@ -168,10 +200,76 @@ int isIFDirective(char *origLine)
     return 0;// don't have IF directive in the line
 }
 
-// This function execute the if directive
-void ifDirective(FILE *asmFile,int *lines)
+//This function get a IF valor and save it in the valor
+void getIFValor(char *origLine, char *valor)
 {
-    char valor[20];
-    int
+    char *valorBegin;
+    const int origLineTAM = strlen(origLine);
+    int i,j = 0;
+
+    valorBegin = strstr(origLine,"IF");
+
+    for(i = 0; i < origLineTAM; i++)
+    {
+        if(valorBegin[i] >= '0' && valorBegin[i] <= '9')
+        {
+            valor[j] = origLine[i];
+            j++;
+        }
+    }
+
+    valor[j] = '\0';
 
 }
+
+// This function execute the if directive
+void ifDirective(FILE *asmFile,char *currentLine, int *lines)
+{
+    char valor[3];
+    int ifValor;
+    const int foundAllDeleteLines = 0;
+
+    getIFValor(currentLine,valor);
+
+    ifValor = atoi(valor);
+    (*lines)++;
+
+    if(ifValor == 1)
+    {
+        (*lines)++;
+         return;
+    }
+
+    else if(ifValor == 0)
+    {
+        int labelLineCount = 0;
+        while(!foundAllDeleteLines)
+        {
+            fgets(currentLine,200,asmFile);
+            removeComment(currentLine);
+            if(removeUselessCharacter(currentLine) == 1)
+                (*lines)++;
+            else if(isLabelLine(currentLine) == 1)
+            {
+                labelLineCount++;
+                (*lines)++;
+            }
+            else if(isLabelLine(currentLine) == 0 && labelLineCount <= 1)
+            {
+                (*lines)++;
+                labelLineCount = 0;
+                return;
+            }
+            else if(labelLineCount >= 2)
+            {
+                skipLines(asmFile,1,lines,2);
+                (*lines)--;
+                return;
+            }
+
+        }
+    }
+}
+
+//void getTokkens(char *origLine, preTokens *preTokenList){}
+//void writeLine(FILE *asmFile){}

@@ -6,9 +6,15 @@
 
 int main()
 {
-    FILE *arq;
-    char linha[200] = "                             B:\t",linha2[200];
 
-    printf("%d\n",isLabelLine(linha));
+    FILE *arq;
+    char linha[200];
+    int lines = 0;
+
+    arq = fopen(".//programTeste//teste1.asm","r");
+    fgets(linha,200,arq);
+    ifDirective(arq,linha,&lines);
+
+    printf("%d\n",lines);
     return 0;
 }

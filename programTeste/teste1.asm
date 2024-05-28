@@ -1,4 +1,7 @@
-AA:EqU1
+IF 0
+L5:
+ADD M3				
+
 L1:equ2
 L2:equ4
 L5:

@@ -6,20 +6,20 @@
 	<string.h>
 	<ctype.h>
 
-1716428441 source:c:\users\games\onedrive\documentos\montador-ligador\montador_ligador\montador_ligador\main.c
+1716897956 source:c:\users\games\onedrive\documentos\montador-ligador\montador_ligador\montador_ligador\main.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	"stringFunctions.h"
 	"preProcess.h"
 
-1716375017 c:\users\games\onedrive\documentos\montador-ligador\montador_ligador\montador_ligador\preprocess.h
+1716894459 c:\users\games\onedrive\documentos\montador-ligador\montador_ligador\montador_ligador\preprocess.h
 	<stdio.h>
 	<stdlib.h>
 	"stringFunctions.h"
 	<string.h>
 
-1716428343 source:c:\users\games\onedrive\documentos\montador-ligador\montador_ligador\montador_ligador\preprocess.c
+1716897725 source:c:\users\games\onedrive\documentos\montador-ligador\montador_ligador\montador_ligador\preprocess.c
 	"preProcess.h"
 
 1716277862 source:c:\users\games\onedrive\documentos\montador-ligador\montador_ligador\montador_ligador\preprocessmain.c
